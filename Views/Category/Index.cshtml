@@ -1,0 +1,29 @@
+﻿@using Forum.ViewModels
+@model List<KategoriaViewModel>
+
+@{
+    ViewBag.Title = "Lista kategorii";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-sm-9">
+        Nazwa kategorii
+    </div>
+    <div class="col-sm-3">
+        Ilość wątków
+    </div>
+</div>
+@{ 
+    int i = 1;
+}
+
+@foreach (KategoriaViewModel category in Model)
+{
+    <div class="row">
+            <div class="col-sm-9"><a href="@Url.Action("Threads", new { id = category.Id })">@(i).@category.Nazwa</a></div>
+            <div class="col-sm-3">@category.IloscWatkow</div>
+    </div>
+    i++;
+}

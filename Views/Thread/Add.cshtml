@@ -1,0 +1,28 @@
+﻿@model Forum.Models.Kategoria
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>@Model.Nazwa</h2>
+<p>Dodaj wątek</p>
+
+<hr/>
+
+<form class="forum-form" action="@Url.Action("Create", new { id = Model.Id })" method="POST">
+    <div class="form-group">
+        <input type="hidden" value="@Model.Id" name="CategoryId" />
+
+        <label for="title">Tytuł</label>
+        <input type="text" id="title" name="Title" class="form-control" />
+
+        <label for="keywords">Słowa kluczowe</label>
+        <input type="text" id="keywords" name="Keywords" class="form-control" />
+
+        <label for="content">Treść</label>
+        <textarea id="content" name="Content" class="form-control"></textarea>
+        <div class="col-md-12 text-right">
+            <input type="submit" class="btn btn-primary" value="Wyślij" />
+        </div>
+    </div>
+</form>

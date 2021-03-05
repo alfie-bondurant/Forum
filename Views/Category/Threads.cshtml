@@ -1,0 +1,30 @@
+﻿@using Forum.Models
+@using Forum.ViewModels
+@model ThreadsViewModel
+@{
+    ViewBag.Title = "Threads";
+}
+
+<h2>@Model.CategoryName</h2>
+<span>#@Model.CategoryId</span>
+
+<div class="row">
+    <div class="col-md-12 text-right">
+        <a href="@Url.Action("Add", "Thread", new { id = Model.CategoryId })" class="btn btn-primary">Dodaj wątek</a>
+    </div>
+</div>
+
+@foreach (Watek thread in Model.Threads)
+{
+    Post firstPost = thread.Posty.OrderBy(o => o.Id).First();
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="forum-post">
+                <h3>@thread.Tytul</h3>
+                <p>@(firstPost.Tresc.Substring(0, Math.Min(firstPost.Tresc.Length,100)))...</p>
+                <hr/>
+            </div>
+        </div>
+    </div>
+}
